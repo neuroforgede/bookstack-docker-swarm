@@ -6,6 +6,7 @@ Sample Docker Stack to set up bookstack.
 
 1. docker-stack-deploy for secret rotation (https://github.com/neuroforgede/docker-stack-deploy)
 2. Hetzner Docker Volumes via costela/docker-volume-hetzner (see https://github.com/neuroforgede/swarmsible/tree/master/environments/test/test-swarm/stacks for a stack to install the driver)
+3. davideshay/dockerautolabel to mark the docker swarm node that is running bookstack so that the data volume backup trigger container can be co-located on the same node as the bookstack container
 
 # How-To
 
