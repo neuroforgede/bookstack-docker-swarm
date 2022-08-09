@@ -124,7 +124,7 @@ services:
           - node.labels.running_bookstack_bookstack == 1
 
   bookstack:
-    image: solidnerd/bookstack:22.04.02
+    image: neuroforgede/bookstack:22.07.2
     depends_on:
       - mysql
     environment:
