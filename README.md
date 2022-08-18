@@ -1,3 +1,5 @@
+Proudly made by [NeuroForge](https://neuroforge.de/) in Bayreuth, Germany.
+
 # bookstack-docker-swarm
 
 Sample Docker Stack to set up bookstack.
