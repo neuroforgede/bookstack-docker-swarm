@@ -135,7 +135,9 @@ services:
       # set the APP_ to the URL of bookstack without without a trailing slash APP_URL=https://example.com
       - APP_URL=<snip>
       # configure this to trust all X-Forwarded-Headers from all proxies, disabled for security reasons
-      # - APP_PROXIES=*
+      # How to do this on your traefik, 
+      # see https://github.com/neuroforgede/swarmsible/blob/master/environments/test/test-swarm/stacks/01_traefik_public/traefik_public.yml
+      # - APP_PROXIES=10.0.0.0/8
       # enable password protected images
       - STORAGE_TYPE=local_secure
       - AZURE_APP_ID=<snip>
