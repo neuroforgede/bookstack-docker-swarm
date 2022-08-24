@@ -132,6 +132,8 @@ services:
       - DB_DATABASE=bookstack
       - DB_USERNAME=bookstack
       - DB_PASSWORD=MYSQL_PASSWORD
+      - CACHE_DRIVER=database
+      - SESSION_DRIVER=database
       # set the APP_ to the URL of bookstack without without a trailing slash APP_URL=https://example.com
       - APP_URL=<snip>
       # configure this to trust all X-Forwarded-Headers from all proxies, disabled for security reasons
