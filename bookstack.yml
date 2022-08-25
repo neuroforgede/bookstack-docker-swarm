@@ -125,8 +125,6 @@ services:
 
   bookstack:
     image: neuroforgede/bookstack:22.07.3
-    depends_on:
-      - mysql
     environment:
       - DB_HOST=mysql:3306
       - DB_DATABASE=bookstack
