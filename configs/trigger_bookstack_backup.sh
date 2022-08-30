@@ -4,8 +4,7 @@ service=bookstack_bookstack
 task="bash /bookstack_backup.sh"
 
 
-serviceID=$(docker service ps -f name=$service -f desired-state=running $service -q --no-trunc |head -n1)
-serviceName=$(docker service ps -f name=$service -f desired-state=running $service --format="{{.Name}}"| head -n1 )
+matchedContainers=$(docker ps -q -f "label=com.docker.swarm.service.name=$service" | head -n1)
+lineCount=$(echo "$matchedContainers" | awk 'NF' | wc -l)
 
-
-docker exec -u 0 $serviceName"."$serviceID $task
+docker exec -u 0 $matchedContainers $task
