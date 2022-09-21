@@ -124,7 +124,7 @@ services:
           - node.labels.running_bookstack_bookstack == 1
 
   bookstack:
-    image: neuroforgede/bookstack:22.09.0
+    image: neuroforgede/bookstack:22.09.1
     environment:
       - DB_HOST=mysql:3306
       - DB_DATABASE=bookstack
