@@ -170,6 +170,11 @@ services:
       - bookstack_network
       - traefik-public
     configs:
+      - source: php_ini
+        target: /usr/local/etc/php/php.ini
+        uid: "0"
+        gid: "0"
+        mode: 0664
       - source: bookstack_backup
         target: /bookstack_backup.sh
         uid: "1000"
