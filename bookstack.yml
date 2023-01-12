@@ -131,7 +131,7 @@ services:
         chown -R www-data:www-data /var/www/bookstack/public/uploads
         chown -R www-data:www-data /var/www/bookstack/storage/uploads
         exec /bin/docker-entrypoint.sh
-    image: neuroforgede/bookstack:22.10.1
+    image: neuroforgede/bookstack:22.11.1
     user: root
     environment:
       - DB_HOST=mysql:3306
