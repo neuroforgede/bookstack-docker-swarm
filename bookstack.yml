@@ -131,7 +131,7 @@ services:
         chown -R www-data:www-data /var/www/bookstack/public/uploads
         chown -R www-data:www-data /var/www/bookstack/storage/uploads
         exec /bin/docker-entrypoint.sh
-    image: neuroforgede/bookstack:23.02.2
+    image: neuroforgede/bookstack:23.06.2
     user: root
     environment:
       - DB_HOST=mysql:3306
@@ -144,6 +144,8 @@ services:
       - SESSION_SECURE_COOKIE=true
       # set the APP_ to the URL of bookstack without without a trailing slash APP_URL=https://example.com
       - APP_URL=<snip>
+      # 32 character secret
+      - APP_KEY=<snip>
       # configure this to trust all X-Forwarded-Headers from all proxies, disabled for security reasons
       # How to do this on your traefik, 
       # see https://github.com/neuroforgede/swarmsible/blob/master/environments/test/test-swarm/stacks/01_traefik_public/traefik_public.yml
