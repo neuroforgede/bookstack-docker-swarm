@@ -124,18 +124,34 @@ services:
           - node.labels.running_bookstack_bookstack == 1
 
   bookstack:
-    image: solidnerd/bookstack:22.04.02
-    depends_on:
-      - mysql
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        chown -R www-data:www-data /var/www/bookstack/public/uploads
+        chown -R www-data:www-data /var/www/bookstack/storage/uploads
+        exec /bin/docker-entrypoint.sh
+    image: neuroforgede/bookstack:23.06.2
+    user: root
     environment:
       - DB_HOST=mysql:3306
       - DB_DATABASE=bookstack
       - DB_USERNAME=bookstack
       - DB_PASSWORD=MYSQL_PASSWORD
+      - CACHE_DRIVER=database
+      - SESSION_DRIVER=database
+      # improve security by only sending cookies via SSL
+      - SESSION_SECURE_COOKIE=true
       # set the APP_ to the URL of bookstack without without a trailing slash APP_URL=https://example.com
       - APP_URL=<snip>
-      # enable password protected images
-      - STORAGE_TYPE=local_secure
+      # 32 character secret
+      - APP_KEY=<snip>
+      # configure this to trust all X-Forwarded-Headers from all proxies, disabled for security reasons
+      # How to do this on your traefik, 
+      # see https://github.com/neuroforgede/swarmsible/blob/master/environments/test/test-swarm/stacks/01_traefik_public/traefik_public.yml
+      # - APP_PROXIES=10.0.0.0/8
+      # enable password protected images and use permission system
+      - STORAGE_TYPE=local_secure_restricted
       - AZURE_APP_ID=<snip>
       - AZURE_TENANT=<snip>
       - AZURE_APP_SECRET=<snip>
@@ -156,6 +172,11 @@ services:
       - bookstack_network
       - traefik-public
     configs:
+      - source: php_ini
+        target: /usr/local/etc/php/php.ini
+        uid: "0"
+        gid: "0"
+        mode: 0664
       - source: bookstack_backup
         target: /bookstack_backup.sh
         uid: "1000"

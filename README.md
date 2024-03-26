@@ -1,6 +1,8 @@
+Proudly made by [NeuroForge](https://neuroforge.de/) in Bayreuth, Germany.
+
 # bookstack-docker-swarm
 
-Sample Docker Stack to set up bookstack.
+Sample Docker Stack to set up bookstack. Look [here](https://github.com/neuroforgede/nothelm-charts/tree/main/charts/bookstack) for a [nothelm](https://github.com/neuroforgede/nothelm.py) chart.
 
 # Used software
 

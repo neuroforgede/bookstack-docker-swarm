@@ -3,9 +3,11 @@
 service=bookstack_bookstack
 task="bash /bookstack_backup.sh"
 
+matchedContainers=$(docker ps -q -f "label=com.docker.swarm.service.name=$service" | head -n1)
+lineCount=$(echo "$matchedContainers" | awk 'NF' | wc -l)
 
-serviceID=$(docker service ps -f name=$service -f desired-state=running $service -q --no-trunc |head -n1)
-serviceName=$(docker service ps -f name=$service -f desired-state=running $service --format="{{.Name}}"| head -n1 )
-
-
-docker exec -u 0 $serviceName"."$serviceID $task
+if [ "$lineCount" -eq "1" ]; then
+    docker exec -u 0 $matchedContainers $task
+else
+    echo "did not find a container running service $service"
+fi
